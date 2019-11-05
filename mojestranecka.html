@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Moje první stránečka</title>
+    <script>
+        function pozdrav() {
+            let nn = document.getElementById("nickname").value;
+            let s = "Čau " + nn + "!";
+            alert(s);
+        }
+    </script>
+</head>
+<body>
+
+<h1>Moje první stránečka</h1>
+<h4>menší nadpis</h4>
+
+Takhle můžu mít <b>nějaký text tučně</b> nebo <i>třeba kurzívou</i>.
+<br>
+Na druhém řádku si ukážeme
+<span style="color: darkgoldenrod">barevný text</span>
+nebo
+<span style="background-color: chocolate">podbarevný text</span>
+nebo
+<span style="color: white; background-color: #226bd2">obojí</span>
+.
+
+<br><br>
+
+<img src="mimon.png" width="150" title="Mimoň">
+
+<br><br>
+
+Jak ti říkají? <input type="text" id="nickname">
+<input type="button" value="Odeslat" onclick="pozdrav()">
+
+</body>
+</html>
