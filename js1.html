@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>První pokusy s JavaScriptem</title>
+    <script>
+        function zpracujVstup() {
+            //zpracovani uzivatelskych vstupu
+            let v1 = Number(document.getElementById("vstup1").value);
+            let v2 = Number(document.getElementById("vstup2").value);
+            //vypocet
+            let vysl = v1 + v2;
+            //vystupy
+            //alert(vysl);
+            document.getElementById("vysledek").value = vysl;
+            document.getElementById("vystup").innerHTML =
+                "Moje skvělá kalkulačka spočítala, že je to <b>" + vysl +"</b>!";
+        }
+    </script>
+</head>
+<body>
+
+<h1>První pokusy s JavaScriptem</h1>
+
+Výpočet:
+<input type="number" id="vstup1">
++
+<input type="number" id="vstup2">
+<input type="button" value="=" onclick="zpracujVstup()">
+<input type="text" id="vysledek" readonly="readonly">
+<div id="vystup" style="background-color: chocolate">...</div>
+
+</body>
+</html>
