@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <title>První pokusy s JavaScriptem</title>
@@ -16,6 +16,12 @@
             }
             if (op == "minus") {
                 vysl = v1 - v2;
+            }
+            if (op == "krat") {
+                vysl = v1 * v2;
+            }
+            if (op == "deleno") {
+                vysl = v1 / v2;
             }
             let zaokr = document.getElementById("zaokrouhlit").checked;
             if (zaokr) {
@@ -39,6 +45,8 @@ Výpočet:
 <select id="operace">
     <option value="plus">+</option>
     <option value="minus">-</option>
+    <option value="krat">x</option>
+    <option value="deleno">:</option>
 </select>
 <input type="number" id="vstup2">
 <input type="checkbox" id="zaokrouhlit">zaokrouhlit na

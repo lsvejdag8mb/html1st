@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Cyklus</title>
+    <script>
+        function jed() {
+            let max = document.getElementById("max").valueAsNumber;
+            //1. zpusob
+            let vyst1 = "";
+            let i = 1;
+            while (i <= max) {
+                vyst1 = vyst1 + i + " ";
+                i = i + 1;
+            }
+            document.getElementById("vystup1").innerHTML = vyst1;
+        }
+    </script>
+</head>
+<body>
+
+<input type="number" id="max">
+<input type="button" value="Jeď!" onclick="jed()">
+<div id="vystup1"></div>
+<div id="vystup2"></div>
+
+</body>
+</html>
