@@ -6,10 +6,22 @@
     <script>
         function zpracujVstup() {
             //zpracovani uzivatelskych vstupu
-            let v1 = Number(document.getElementById("vstup1").value);
-            let v2 = Number(document.getElementById("vstup2").value);
+            let v1 = document.getElementById("vstup1").valueAsNumber;
+            let v2 = document.getElementById("vstup2").valueAsNumber;
             //vypocet
-            let vysl = v1 + v2;
+            let op = document.getElementById("operace").value;
+            let vysl;
+            if (op == "plus") {
+                vysl = v1 + v2;
+            }
+            if (op == "minus") {
+                vysl = v1 - v2;
+            }
+            let zaokr = document.getElementById("zaokrouhlit").checked;
+            if (zaokr) {
+                let dm = document.getElementById("desmista").valueAsNumber;
+                vysl = vysl.toFixed(dm);
+            }
             //vystupy
             //alert(vysl);
             document.getElementById("vysledek").value = vysl;
@@ -24,8 +36,13 @@
 
 Výpočet:
 <input type="number" id="vstup1">
-+
+<select id="operace">
+    <option value="plus">+</option>
+    <option value="minus">-</option>
+</select>
 <input type="number" id="vstup2">
+<input type="checkbox" id="zaokrouhlit">zaokrouhlit na
+<input type="number" id="desmista" min="0" max="3">
 <input type="button" value="=" onclick="zpracujVstup()">
 <input type="text" id="vysledek" readonly="readonly">
 <div id="vystup" style="background-color: chocolate">...</div>
