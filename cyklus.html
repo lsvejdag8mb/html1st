@@ -9,7 +9,20 @@
             return sude;
         }
         function jePrvocislo(c) {
-
+            let prvocislo = true;
+            for (let d = 2; d < c; d++) {
+                if (c % d == 0) { // vzor: c % 2 == 0
+                    prvocislo = false;
+                    break;
+                }
+            }
+            return prvocislo;
+        }
+        function jePrvocislo2(c) {
+            for (let d = 2; d < c; d++) {
+                if (c % d == 0) return false;
+            }
+            return true;
         }
         function jed() {
             let max = document.getElementById("max").valueAsNumber;
@@ -24,7 +37,7 @@
             //2. zpusob
             let vyst2 = "";
             for (let i = 1; i <= max; i++) {
-                if (jeSude(i)) {
+                if (jePrvocislo(i)) {
                     vyst2 = vyst2 + i + " ";
                 }
             }
@@ -37,6 +50,7 @@
 <input type="number" id="max">
 <input type="button" value="Jeď!" onclick="jed()">
 <div id="vystup1"></div>
+Prvočísla:<br>
 <div id="vystup2"></div>
 
 </body>
