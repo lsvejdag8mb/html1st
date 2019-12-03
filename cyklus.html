@@ -35,11 +35,15 @@
             }
             document.getElementById("vystup1").innerHTML = vyst1;
             //2. zpusob
-            let vyst2 = "";
+            let prvocisla = new Array();
             for (let i = 1; i <= max; i++) {
                 if (jePrvocislo(i)) {
-                    vyst2 = vyst2 + i + " ";
+                    prvocisla.push(i);
                 }
+            }
+            let vyst2 = "";
+            for (let i = 0; i < prvocisla.length; i++) {
+                vyst2 = vyst2 + prvocisla[i] + " ";
             }
             document.getElementById("vystup2").innerHTML = vyst2;
         }
