@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <title>Cyklus</title>
     <script>
+        function jeSude(c) {
+            let sude = (c % 2 == 0);
+            return sude;
+        }
+        function jePrvocislo(c) {
+
+        }
         function jed() {
             let max = document.getElementById("max").valueAsNumber;
             //1. zpusob
@@ -17,7 +24,9 @@
             //2. zpusob
             let vyst2 = "";
             for (let i = 1; i <= max; i++) {
-                vyst2 = vyst2 + i + " ";
+                if (jeSude(i)) {
+                    vyst2 = vyst2 + i + " ";
+                }
             }
             document.getElementById("vystup2").innerHTML = vyst2;
         }
