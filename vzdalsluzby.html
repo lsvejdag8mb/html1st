@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Volání zdálených služeb</title>
+    <script>
+        function aktualizuj() {
+            let url = `https://nodejs-3260.rostiapp.cz/date/`;
+            fetch(url).then(function(response) {
+                response.text().then(function(text) {
+                    let obj = JSON.parse(text);
+                    document.getElementById("denvtydnu").innerHTML = obj.dowcz.toLowerCase();
+                    document.getElementById("datum").innerHTML = obj.date;
+                    document.getElementById("svatek").innerHTML = obj.svatek;
+                });
+            });
+
+            setInterval(cas,1000);
+            setInterval(counter,100);
+        }
+        function cas() {
+            let url = `https://nodejs-3260.rostiapp.cz/date/`;
+            fetch(url).then(function(response) {
+                response.text().then(function(text) {
+                    let obj = JSON.parse(text);
+                    document.getElementById("cas").innerHTML = obj.time;
+                });
+            });
+        }
+        function counter() {
+            let url = `https://nodejs-3260.rostiapp.cz/demo/inc`;
+            fetch(url).then(function(response) {
+                response.text().then(function(text) {
+                    let obj = JSON.parse(text);
+                    document.getElementById("counter").innerHTML = obj.counter;
+                });
+            });
+        }
+    </script>
+</head>
+<body onload="aktualizuj()">
+
+<h1>Volání zdálených služeb</h1>
+
+Dnes je <b id="denvtydnu">...</b> <b id="datum">...</b>
+a svátek má <b id="svatek">...</b>.
+<br><br>
+Právě je <b id="cas">...</b>.
+<br><br>
+<b id="counter">...</b>
+
+</body>
+</html>
