@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Počasí</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+    <script>
+        function zobrazMesto(urlLoc, idPref) {
+            let url = `https://nodejs-3260.rostiapp.cz/weather/?loc=`+urlLoc;
+            fetch(url).then(function(response) {
+                response.text().then(function(text) {
+                    let obj = JSON.parse(text);
+                    document.getElementById(idPref+"-teplota").innerHTML = obj.temp;
+                    document.getElementById(idPref+"-tlak").innerHTML = obj.pressure;
+                    document.getElementById(idPref+"-ikona").innerHTML =
+                        "<img src='"+obj.icon+"'>";
+                });
+            });
+        }
+        function zobrazPocasi() {
+            zobrazMesto("Mlada Boleslav","mb");
+            zobrazMesto("Praha","praha");
+            zobrazMesto("London","londyn");
+            zobrazMesto("Sydney","sydney");
+        }
+    </script>
+</head>
+<body onload="zobrazPocasi()">
+
+<h1>Počasí</h1>
+
+<table>
+    <tr>
+        <th>Mesto</th>
+        <th> </th>
+        <th>Teplota</th>
+        <th>Tlak</th>
+    </tr>
+    <tr>
+        <td>Mladá Boleslav</td>
+        <td id="mb-ikona"></td>
+        <td id="mb-teplota"></td>
+        <td id="mb-tlak"></td>
+    </tr>
+    <tr>
+        <td>Praha</td>
+        <td id="praha-ikona"></td>
+        <td id="praha-teplota"></td>
+        <td id="praha-tlak"></td>
+    </tr>
+    <tr>
+        <td>Londyn</td>
+        <td id="londyn-ikona"></td>
+        <td id="londyn-teplota"></td>
+        <td id="londyn-tlak"></td>
+    </tr>
+    <tr>
+        <td>Sydney</td>
+        <td id="sydney-ikona"></td>
+        <td id="sydney-teplota"></td>
+        <td id="sydney-tlak"></td>
+    </tr>
+</table>
+
+</body>
+</html>
