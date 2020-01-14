@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Test JSONu</title>
+    <script>
+        function poNacteni() {
+            let obj = {};
+            obj.jmeno = "Libor";
+            obj.prijmeni = "Svejda";
+            //document.body.innerHTML = obj.prijmeni + " " + obj.jmeno;
+
+            let mujJson = JSON.stringify(obj);
+            //document.body.innerHTML = mujJson;
+
+            let druhyJson = "{\"jmeno\":\"Bob\",\"prijmeni\":\"Bobicek\",\"titul\":\"DrSc.\"}";
+            let obj2 = JSON.parse(druhyJson);
+            document.body.innerHTML = obj2.titul + " " + obj2.prijmeni;
+
+        }
+    </script>
+</head>
+<body onload="poNacteni()">
+
+</body>
+</html>
