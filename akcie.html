@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Akcie</title>
+    <script>
+        function ukazAkcii() {
+            let v = document.getElementById("akcie").value;
+            //alert(v);
+            let url = `https://nodejs-3260.rostiapp.cz/quotes?symbol=`+v;
+            fetch(url).then(function(response) {
+                response.text().then(function(text) {
+                    let obj = JSON.parse(text);
+                    alert(obj.price);
+                    //document.getElementById("cas").innerHTML = obj.time;
+                });
+            });
+        }
+    </script>
+</head>
+<body>
+
+<h1>Akcie</h1>
+
+<select id="akcie" onchange="ukazAkcii()">
+    <option value="AAPL">Apple</option>
+    <option value="GOOG">Google</option>
+    <option value="MSFT">Microsoft</option>
+    <option value="TSLA">Tesla</option>
+</select>
+<input type="button" value="ukaz" onclick="ukazAkcii()">
+
+</body>
+</html>

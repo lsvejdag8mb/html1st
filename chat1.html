@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat1</title>
+    <script>
+        function odesli() {
+            let v = document.getElementById("zprava").value; //nacteni zpravy
+            document.getElementById("zprava").value = ""; //vymazani textu zpravu z inputu
+            let url = `https://nodejs-3260.rostiapp.cz/chat1/addMsg?msg=`+v;
+            fetch(url).then(function(response) {
+                response.text().then(function(text) {
+                    //nemusim nic delat
+                });
+            });
+        }
+        function ukazZpravy() {
+            let url = `https://nodejs-3260.rostiapp.cz/chat1/listMsgs`;
+            fetch(url).then(function(response) {
+                response.text().then(function(text) {
+                    let obj = JSON.parse(text);
+                    let s = "";
+                    for (let msg of obj.splice(-100)) {
+                        s = s + msg + "<br>";
+                    }
+                    document.getElementById("zpravy").innerHTML = s;
+                });
+            });
+        }
+        function poNacteni() {
+            setInterval(ukazZpravy, 1000);
+            let input = document.getElementById("zprava");
+            input.addEventListener("keyup", function(event) {
+                if (event.keyCode === 13) {
+                    odesli();
+                }
+            });
+        }
+    </script>
+</head>
+<body onload="poNacteni()">
+
+<h1>Chat1</h1>
+
+<div id="zpravy"></div>
+<input type="text" id="zprava">
+<input type="button" value="Odesli" onclick="odesli()">
+
+
+</body>
+</html>
