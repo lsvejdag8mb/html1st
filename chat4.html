@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat4</title>
+    <script>
+        let token = "111111";
+        function odesli() {
+            let v = document.getElementById("zprava").value; //nacteni zpravy
+            document.getElementById("zprava").value = ""; //vymazani textu zpravu z inputu
+            let url = `https://nodejs-3260.rostiapp.cz/chat4/addMsg?usr=`+token+`&msg=`+v;
+            fetch(url).then(function(response) {
+                response.text().then(function(text) {
+                    //nemusim nic delat
+                });
+            });
+        }
+        function ukazZpravy() {
+            let url = `https://nodejs-3260.rostiapp.cz/chat4/listMsgs?usr=`+token;
+            fetch(url).then(function(response) {
+                response.text().then(function(text) {
+                    let obj = JSON.parse(text);
+                    let s = "";
+                    let lastMsg = "---";
+                    for (let o of obj.splice(-8)) {
+                        if (lastMsg != o.msg) {
+                            s = s + "<span style='font-size: 50%'>" + o.time + " " + o.user + "</span>"
+                            if (o.icon) { //kontrola, zda je ikona nastavena
+                                s = s + "<img src='"+o.icon+"' height='20'>";
+                            }
+                            s = s + "<br>" + o.msg + "<br>";
+                        }
+                        lastMsg = o.msg;
+                    }
+                    document.getElementById("zpravy").innerHTML = s;
+                });
+            });
+        }
+        function poNacteni() {
+            setInterval(ukazZpravy, 1000);
+            let input = document.getElementById("zprava");
+            input.addEventListener("keyup", function(event) {
+                if (event.keyCode === 13) {
+                    odesli();
+                }
+            });
+        }
+    </script>
+</head>
+<body onload="poNacteni()">
+
+<h1>Chat4</h1>
+
+<div id="zpravy"></div>
+<input type="text" id="zprava">
+<input type="button" value="Odesli" onclick="odesli()">
+
+
+</body>
+</html>
